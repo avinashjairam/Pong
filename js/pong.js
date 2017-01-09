@@ -20,6 +20,13 @@ var ctx = c.getContext("2d");
 var x = 40;
 var y = 40;
 
+
+var ctx2 = c.getContext("2d");
+
+
+var xPos = canvas.width-10;
+var yPos = canvas.height/2; 
+
 function draw(){
 
 
@@ -30,6 +37,8 @@ function draw(){
 
 
 	ctx.stroke();
+
+	setInterval(movingBall,10);
 }
 
 // function moveBall(){
@@ -42,6 +51,29 @@ function draw(){
 // 	}
 
 // }
+
+
+function movingBall(){
+
+	//alert("hi");
+
+	
+	ctx2.clearRect(xPos,yPos,20,20);
+
+	ctx.beginPath();
+
+	ctx.arc(xPos,yPos,10,0,2*Math.PI);
+	ctx.fillStyle="red";
+	ctx.fill();
+
+	ctx.stroke();
+
+	if(xPos != 0){
+		xPos--;
+	}
+
+
+}
 
 $(document).keypress(function(event){
 	if(event.keyCode==37){
