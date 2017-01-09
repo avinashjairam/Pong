@@ -58,7 +58,9 @@ function movingBall(){
 	//alert("hi");
 
 	
-	ctx2.clearRect(xPos,yPos,20,20);
+	 ctx.clearRect(xPos-20,yPos-20,canvas.width,canvas.height);
+	//ctx.clearRect(0,0,canvas.width,canvas.height);
+
 
 	ctx.beginPath();
 
