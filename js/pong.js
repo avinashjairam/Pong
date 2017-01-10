@@ -20,9 +20,15 @@ function draw(){
 
 
 	ctx.beginPath();
+
+	ctx.rect(0,0,canvas.width,canvas.height);
+	ctx.fillStyle="green";
+	ctx.fill();
+
 	ctx.arc(x,y,20,0,2 * Math.PI);
 	ctx.fillStyle="blue";
 	ctx.fill();
+	ctx.closePath();
 
 
 	ctx.stroke();
@@ -47,18 +53,18 @@ function movingBall(){
 	//alert("hi");
 
 
-	 //ctx2.clearRect(xPos-20,yPos-20,canvas.width,canvas.height);
+	 //ctx2.clearRect(xPos-20,yPos-20,40,40);
 	ctx.clearRect(0,0,canvas.width,canvas.height);
 
 
-	ctx2.beginPath();
+	ctx.beginPath();
 
-	ctx2.arc(xPos,yPos,10,0,2*Math.PI);
-	ctx2.fillStyle="red";
-	ctx2.fill();
-	ctx2.closePath();
+	ctx.arc(xPos,yPos,10,0,2*Math.PI);
+	ctx.fillStyle="red";
+	ctx.fill();
+	ctx.closePath();
 
-	ctx2.stroke();
+	ctx.stroke();
 
 	if(count%2==0){
 		left =true;
@@ -124,6 +130,7 @@ $(document).keypress(function(event){
 			ctx.arc(x,y,20,0,2 * Math.PI);
 			ctx.fillStyle="blue";
 			ctx.fill();
+			ctx.closePath();
 			ctx.stroke();
 		}
 	}
@@ -135,6 +142,7 @@ $(document).keypress(function(event){
 			ctx.arc(x,y,20,0,2 * Math.PI);
 			ctx.fillStyle="blue";
 			ctx.fill();
+			ctx.closePath();
 			ctx.stroke();
 		}
 			
@@ -148,6 +156,7 @@ $(document).keypress(function(event){
 			ctx.arc(x,y,20,0,2 * Math.PI);
 			ctx.fillStyle="blue";
 			ctx.fill();
+			ctx.closePath();
 			ctx.stroke();
 		}
 	}
@@ -159,6 +168,7 @@ $(document).keypress(function(event){
 			ctx.arc(x,y,20,0,2 * Math.PI);
 			ctx.fillStyle="blue";
 			ctx.fill();
+			ctx.closePath();
 			ctx.stroke();
 		}
 	}
