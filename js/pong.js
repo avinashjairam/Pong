@@ -1,17 +1,3 @@
-// $(document).ready(function() {
-// 	alert("hi");
-
-// });
-
-// $("#click").click(function(){
-// 	alert("hi");
-
-// });
-
-// function message(){
-
-// 	alert("hello")
-// }
 
 var c = document.getElementById("canvas");
 
@@ -20,13 +6,16 @@ var ctx = c.getContext("2d");
 var x = 40;
 var y = 40;
 
+var count = 0; 
+
 
 var ctx2 = c.getContext("2d");
 
 
 var xPos = canvas.width-10;
 var yPos = canvas.height/2; 
-
+var left = false;
+var right = true;
 function draw(){
 
 
@@ -57,23 +46,72 @@ function movingBall(){
 
 	//alert("hi");
 
-	
-	 ctx.clearRect(xPos-20,yPos-20,canvas.width,canvas.height);
-	//ctx.clearRect(0,0,canvas.width,canvas.height);
+
+	 //ctx2.clearRect(xPos-20,yPos-20,canvas.width,canvas.height);
+	ctx.clearRect(0,0,canvas.width,canvas.height);
 
 
-	ctx.beginPath();
+	ctx2.beginPath();
 
-	ctx.arc(xPos,yPos,10,0,2*Math.PI);
-	ctx.fillStyle="red";
-	ctx.fill();
+	ctx2.arc(xPos,yPos,10,0,2*Math.PI);
+	ctx2.fillStyle="red";
+	ctx2.fill();
+	ctx2.closePath();
 
-	ctx.stroke();
+	ctx2.stroke();
 
-	if(xPos != 0){
-		xPos--;
+	if(count%2==0){
+		left =true;
+		right=false;
+	}
+	else{
+		left =false;
+		right=true;
 	}
 
+	if(xPos  >= 20 && left==true){
+		xPos--;
+
+		if(xPos==20){
+			count++;
+			//alert(count);
+		}
+
+
+		// right=false;
+		// left=true;
+	}
+
+	if(xPos<=canvas.width-20 && right==true){
+		xPos++;
+		if(xPos == canvas.width-20){
+			count++;
+		}
+	}
+	// else{
+	// 	right=true;
+	// }
+
+	// //alert(xPos);
+	// if(right ==false){
+	// 	xPos--;
+	// }
+	
+	// if(xPos == 20){
+	// 	right =true;
+	// }
+	// else{
+	// 	right=false;
+	// }
+		
+	// if(right == true){
+	// 	//ctx.clearRect(0,0,canvas.width,canvas.height);
+
+	// 	xPos++;
+	// }
+		
+
+	
 
 }
 
