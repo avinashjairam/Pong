@@ -16,24 +16,75 @@ var xPos = canvas.width-10;
 var yPos = canvas.height/2; 
 var left = false;
 var right = true;
-function draw(){
 
-
+function drawBall(){
 	ctx.beginPath();
 
-	ctx.rect(0,0,canvas.width,canvas.height);
-	ctx.fillStyle="green";
-	ctx.fill();
-
-	ctx.arc(x,y,20,0,2 * Math.PI);
-	ctx.fillStyle="blue";
+	ctx.arc(xPos,yPos,10,0,2*Math.PI);
+	ctx.fillStyle="red";
 	ctx.fill();
 	ctx.closePath();
 
-
 	ctx.stroke();
+}
 
-	setInterval(movingBall,10);
+function drawPaddle(){
+	ctx.beginPath();
+	ctx.rect(10,canvas.height/2,10,40);
+	ctx.fillStyle="blue";
+	ctx.fill();
+	ctx.closePath();
+}
+
+
+
+
+function draw(){
+
+	ctx.clearRect(0,0,canvas.width,canvas.height);
+
+	drawPaddle();
+	drawBall();
+
+	if(count%2==0){
+		left =true;
+		right=false;
+	}
+	else{
+		left =false;
+		right=true;
+	}
+
+	if(xPos  >= 20 && left==true){
+		xPos--;
+
+		if(xPos==20){
+			count++;
+		}
+	}
+
+	if(xPos<=canvas.width-20 && right==true){
+		xPos++;
+		if(xPos == canvas.width-20){
+			count++;
+		}
+	}
+
+	// ctx.beginPath();
+
+	// ctx.rect(0,0,canvas.width,canvas.height);
+	// ctx.fillStyle="green";
+	// ctx.fill();
+
+	// ctx.arc(x,y,20,0,2 * Math.PI);
+	// ctx.fillStyle="blue";
+	// ctx.fill();
+	// ctx.closePath();
+
+
+	// ctx.stroke();
+
+	// setInterval(movingBall,10);
 }
 
 // function moveBall(){
@@ -80,12 +131,7 @@ function movingBall(){
 
 		if(xPos==20){
 			count++;
-			//alert(count);
 		}
-
-
-		// right=false;
-		// left=true;
 	}
 
 	if(xPos<=canvas.width-20 && right==true){
@@ -94,31 +140,6 @@ function movingBall(){
 			count++;
 		}
 	}
-	// else{
-	// 	right=true;
-	// }
-
-	// //alert(xPos);
-	// if(right ==false){
-	// 	xPos--;
-	// }
-	
-	// if(xPos == 20){
-	// 	right =true;
-	// }
-	// else{
-	// 	right=false;
-	// }
-		
-	// if(right == true){
-	// 	//ctx.clearRect(0,0,canvas.width,canvas.height);
-
-	// 	xPos++;
-	// }
-		
-
-	
-
 }
 
 $(document).keypress(function(event){
@@ -175,3 +196,5 @@ $(document).keypress(function(event){
 
 //  alert(String.fromCharCode(event.which) + " " + event.keyCode); 
 });
+
+setInterval(draw(),10);
