@@ -6,7 +6,7 @@ var c = document.getElementById("canvas");
 var ctx = c.getContext("2d");
 
 var x = 10;
-var y = canvas.height/2;
+var y = 50;
 
 var count = 0; 
 
@@ -18,6 +18,9 @@ var xPos = canvas.width-10;
 var yPos = canvas.height/2; 
 var left = false;
 var right = true;
+
+var upPressed=false;
+var downPressed=true;
 
 
 
@@ -55,6 +58,7 @@ function draw(){
 
 	drawPaddle();
 	drawBall();
+	//alert(x);
 
 	if(count%2==0){
 		left =true;
@@ -80,26 +84,37 @@ function draw(){
 		}
 	}
 
+	if(upPressed=true){
+		y-=30;
+	}
 
+	if(downPressed=true){
+		y+=30;
+	}
+
+}
 	$(document).keypress(function(event){
 		if(event.keyCode==37){
 			x-=5;
+		//	console.log(x);
 		}
 		if(event.keyCode==38){
-			y-=5;
+			y-=1;
+			upPressed=true;
+		//	console.log(y);
 		}
 
 		if(event.keyCode==39){
-			x+=5;
+			x+=1;
+			alert(x);
+		//	console.log(x);
 		}
 		if(event.keyCode==40){
-			y+=5;
+			y+=1;
+			downPressed=true;
+		//	console.log(y);
 		}
 	});
-
-
-}
-
 
 
 
