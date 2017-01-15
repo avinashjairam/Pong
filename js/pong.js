@@ -94,25 +94,16 @@ function draw(){
 
 }
 	$(document).keypress(function(event){
-		if(event.keyCode==37){
-			x-=5;
-		//	console.log(x);
-		}
+		
 		if(event.keyCode==38){
 			y-=1;
 			upPressed=true;
-		//	console.log(y);
 		}
 
-		if(event.keyCode==39){
-			x+=1;
-			alert(x);
-		//	console.log(x);
-		}
+	
 		if(event.keyCode==40){
 			y+=1;
 			downPressed=true;
-		//	console.log(y);
 		}
 	});
 
