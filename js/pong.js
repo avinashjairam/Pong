@@ -96,7 +96,11 @@ function draw(){
 
 	if(Math.abs(x -xPos) <= 11 && Math.abs(y-yPos) <=50){
 		count++;
-		//alert("collison");
+		alert("hit");
+	}
+
+	if(xPos==10){
+		alert("miss");
 	}
 
 }
