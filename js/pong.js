@@ -92,6 +92,12 @@ function draw(){
 		y+=30;
 	}
 
+	console.log("x = " + x + " xPos= " + xPos + " y =" +y + " yPos =" + yPos);
+
+	if(Math.abs(x -xPos) < 20 && Math.abs(y-yPos<50)){
+		alert("collison");
+	}
+
 }
 	$(document).keypress(function(event){
 		
