@@ -69,17 +69,17 @@ function draw(){
 		right=true;
 	}
 
-	if(xPos  >= 20 && left==true){
+	if(xPos  >= 10 && left==true){
 		xPos--;
 
-		if(xPos==20){
+		if(xPos==10){
 			count++;
 		}
 	}
 
-	if(xPos<=canvas.width-20 && right==true){
+	if(xPos<=canvas.width-10 && right==true){
 		xPos++;
-		if(xPos == canvas.width-20){
+		if(xPos == canvas.width-10){
 			count++;
 		}
 	}
@@ -95,7 +95,8 @@ function draw(){
 	console.log("x = " + x + " xPos= " + xPos + " y =" +y + " yPos =" + yPos);
 
 	if(Math.abs(x -xPos) < 20 && Math.abs(y-yPos<50)){
-		alert("collison");
+		count++;
+		//alert("collison");
 	}
 
 }
