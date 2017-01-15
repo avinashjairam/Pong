@@ -94,7 +94,7 @@ function draw(){
 
 	console.log("x = " + x + " xPos= " + xPos + " y =" +y + " yPos =" + yPos);
 
-	if(Math.abs(x -xPos) < 20 && Math.abs(y-yPos<50)){
+	if(Math.abs(x -xPos) <= 11 && Math.abs(y-yPos) <=50){
 		count++;
 		//alert("collison");
 	}
