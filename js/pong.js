@@ -22,7 +22,33 @@ var right = true;
 var upPressed=false;
 var downPressed=false;
 
+$(document).keydown(function(event){
+	
+	if(event.keyCode==38){
+		y-=1;
+		upPressed=true;
+	}
 
+
+	if(event.keyCode==40){
+		y+=1;
+		downPressed=true;
+	}
+});
+
+$(document).keyup(function(event){
+	
+	if(event.keyCode==38){
+		y-=1;
+		upPressed=false;
+	}
+
+
+	if(event.keyCode==40){
+		y+=1;
+		downPressed=false;
+	}
+});
 
 
 
@@ -85,12 +111,12 @@ function draw(){
 	}
 
 	if(upPressed==true){
-		y-=20;
-		alert("Hi");
+		y-=5;
+		//alert("Hi");
 	}
 
 	if(downPressed==true){
-		y+=20;
+		y+=5;
 	}
 
 	console.log("x = " + x + " xPos= " + xPos + " y =" +y + " yPos =" + yPos);
@@ -105,19 +131,7 @@ function draw(){
 	}
 
 }
-	$(document).keydown(function(event){
-		
-		if(event.keyCode==38){
-			y-=1;
-			upPressed=true;
-		}
 
-	
-		if(event.keyCode==40){
-			y+=1;
-			downPressed=true;
-		}
-	});
 
 
 
