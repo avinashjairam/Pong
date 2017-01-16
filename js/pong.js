@@ -21,6 +21,8 @@ var right = true;
 
 var upPressed=false;
 var downPressed=false;
+var upCollide=false;
+var downCollide=false;
 
 $(document).keydown(function(event){
 	
@@ -122,12 +124,31 @@ function draw(){
 	console.log("x = " + x + " xPos= " + xPos + " y =" +y + " yPos =" + yPos);
 
 	if(Math.abs(x -xPos) <= 11 && Math.abs(y-yPos) <=50){
+		
+		if(upPressed == true){
+			upCollide=true;
+			//yPos-=10;
+
+		}
+
+		if(downPressed == true){
+			downCollide=true;
+			//yPos+=10;
+		}
 		count++;
 	//	alert("hit");
 	}
 
 	if(xPos==10){
 		//alert("miss");
+	}
+
+
+	if(upCollide==true){
+		yPos--;
+	}
+	if(downCollide==true){
+		yPos++;
 	}
 
 }
