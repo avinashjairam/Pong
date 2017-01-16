@@ -162,10 +162,24 @@ function draw(){
 	if(yPos == 10){
 	//	alert("bounce top");
 		bounceFromTop=true;
+		bounceFromBottom=false;
+		
 		upCollide=false;
+	}
+
+	if(yPos == canvas.height-10){
+		//alert("bounce bottom");
+		bounceFromBottom=true;
+		bounceFromTop=false;
+
+		downCollide=false;
 	}
 	if(bounceFromTop ==true){
 		yPos++;
+	}
+
+	if(bounceFromBottom == true){
+		yPos--;
 	}
 
 }
