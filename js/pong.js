@@ -27,13 +27,13 @@ var downCollide=false;
 $(document).keydown(function(event){
 	
 	if(event.keyCode==38){
-		y-=1;
+		//y-=1;
 		upPressed=true;
 	}
 
 
-	if(event.keyCode==40){
-		y+=1;
+	if(event.keyCode==40 ){
+		//y+=1;
 		downPressed=true;
 	}
 });
@@ -41,13 +41,13 @@ $(document).keydown(function(event){
 $(document).keyup(function(event){
 	
 	if(event.keyCode==38){
-		y-=1;
+		//y-=1;
 		upPressed=false;
 	}
 
 
 	if(event.keyCode==40){
-		y+=1;
+		//y+=1;
 		downPressed=false;
 	}
 });
@@ -112,12 +112,12 @@ function draw(){
 		}
 	}
 
-	if(upPressed==true){
+	if(upPressed==true && y >= 0){
 		y-=5;
 		//alert("Hi");
 	}
 
-	if(downPressed==true){
+	if(downPressed==true && y <= canvas.height- 40){
 		y+=5;
 	}
 
