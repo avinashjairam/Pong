@@ -20,7 +20,7 @@ var left = false;
 var right = true;
 
 var upPressed=false;
-var downPressed=true;
+var downPressed=false;
 
 
 
@@ -84,27 +84,28 @@ function draw(){
 		}
 	}
 
-	if(upPressed=true){
-		y-=30;
+	if(upPressed==true){
+		y-=20;
+		alert("Hi");
 	}
 
-	if(downPressed=true){
-		y+=30;
+	if(downPressed==true){
+		y+=20;
 	}
 
 	console.log("x = " + x + " xPos= " + xPos + " y =" +y + " yPos =" + yPos);
 
 	if(Math.abs(x -xPos) <= 11 && Math.abs(y-yPos) <=50){
 		count++;
-		alert("hit");
+	//	alert("hit");
 	}
 
 	if(xPos==10){
-		alert("miss");
+		//alert("miss");
 	}
 
 }
-	$(document).keypress(function(event){
+	$(document).keydown(function(event){
 		
 		if(event.keyCode==38){
 			y-=1;
