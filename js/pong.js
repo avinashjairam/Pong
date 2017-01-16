@@ -24,6 +24,9 @@ var downPressed=false;
 var upCollide=false;
 var downCollide=false;
 
+var bounceFromTop = false;
+var bounceFromBottom = false;
+
 $(document).keydown(function(event){
 	
 	if(event.keyCode==38){
@@ -97,14 +100,19 @@ function draw(){
 		right=true;
 	}
 
+	//Moving the ball left 
 	if(xPos  >= 10 && left==true){
 		xPos--;
+
+		//When the ball reaches x Position 10, increment a counter.
+		// When the counter is odd the ball moves right.
 
 		if(xPos==10){
 			count++;
 		}
 	}
 
+	//Moving the Ball Right 
 	if(xPos<=canvas.width-10 && right==true){
 		xPos++;
 		if(xPos == canvas.width-10){
@@ -148,6 +156,15 @@ function draw(){
 		yPos--;
 	}
 	if(downCollide==true){
+		yPos++;
+	}
+
+	if(yPos == 10){
+	//	alert("bounce top");
+		bounceFromTop=true;
+		upCollide=false;
+	}
+	if(bounceFromTop ==true){
 		yPos++;
 	}
 
