@@ -57,6 +57,11 @@ $(document).keyup(function(event){
 	}
 });
 
+function lost(){
+	ctx.clearRect(0,0,canvas.width,canvas.height);
+	ctx.font = "30px Arial";
+    ctx.fillText("You Lost!",canvas.width/2,canvas.height/2);
+}
 
 
 
@@ -156,6 +161,8 @@ function draw(){
 
 	if(xPos==10){
 		//alert("miss");
+		lost();
+
 	}
 
 
@@ -191,6 +198,8 @@ function draw(){
 	}
 
 }
+
+
 
 
 
