@@ -27,6 +27,8 @@ var downCollide=false;
 var bounceFromTop = false;
 var bounceFromBottom = false;
 
+var start=true;
+
 $(document).keydown(function(event){
 	
 	if(event.keyCode==38){
@@ -91,6 +93,10 @@ function draw(){
 	drawBall();
 	//alert(x);
 
+	if(start==true){
+		yPos++;
+	}
+
 	if(count%2==0){
 		left =true;
 		right=false;
@@ -103,6 +109,7 @@ function draw(){
 	//Moving the ball left 
 	if(xPos  >= 10 && left==true){
 		xPos--;
+
 
 		//When the ball reaches x Position 10, increment a counter.
 		// When the counter is odd the ball moves right.
@@ -180,6 +187,7 @@ function draw(){
 
 	if(bounceFromBottom == true){
 		yPos--;
+		start=false;
 	}
 
 }
