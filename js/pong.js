@@ -19,6 +19,9 @@ var yPos = canvas.height/2;
 var left = false;
 var right = true;
 
+var xClick=1;
+var yClick=1;
+
 var upPressed=false;
 var downPressed=false;
 var upCollide=false;
@@ -56,6 +59,21 @@ $(document).keyup(function(event){
 		//y+=1;
 		downPressed=false;
 	}
+});
+
+$("#canvas").bind("click", function(event){
+	
+	var $div = $(event.target);
+
+	var offset = $div.offset();
+
+	 xClick = event.clientX-offset.left;
+	 yClick = event.clientY-offset.top;
+
+
+
+	//alert(xClick + " " + yClick);
+
 });
 
 function lost(){
@@ -204,8 +222,23 @@ function draw(){
 	}
 	else{
 		lost();
+		//playAgain();
+
+		if(lose==true && xClick !=1){
+		lose = false;
+		//alert(xClick);
+	}
+
+
 	}
 	
+}
+
+function playAgain(){
+
+	
+
+
 }
 
 
