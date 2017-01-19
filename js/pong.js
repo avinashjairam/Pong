@@ -80,6 +80,11 @@ function lost(){
 	ctx.clearRect(0,0,canvas.width,canvas.height);
 	ctx.font = "30px Arial";
     ctx.fillText("Game Over!",150,canvas.height/2);
+    ctx.fillText("Play Again?",150,(canvas.height/2)+50)
+    //ctx.rect(150,(canvas.height/2)+10, 50,20);
+    ctx.fillStyle="red"
+    ctx.fill();
+    ctx.closePath();
 }
 
 
@@ -222,12 +227,9 @@ function draw(){
 	}
 	else{
 		lost();
-		//playAgain();
+		playAgain();
 
-		if(lose==true && xClick !=1){
-		lose = false;
-		//alert(xClick);
-	}
+	
 
 
 	}
@@ -236,7 +238,10 @@ function draw(){
 
 function playAgain(){
 
-	
+		if(lose==true && xClick !=1){
+		lose = false;
+		//alert(xClick);
+	}
 
 
 }
