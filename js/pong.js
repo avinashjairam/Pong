@@ -143,6 +143,7 @@ function draw(){
 			xPos--;
 
 
+
 			//When the ball reaches x Position 10, increment a counter.
 			// When the counter is odd the ball moves right.
 
@@ -154,10 +155,13 @@ function draw(){
 		//Moving the Ball Right 
 		if(xPos<=canvas.width-10 && right==true){
 			xPos++;
+			//alert("error");
 			if(xPos == canvas.width-10){
 				count++;
 			}
 		}
+
+
 
 		if(upPressed==true && y >= 0){
 			y-=5;
@@ -168,7 +172,7 @@ function draw(){
 			y+=5;
 		}
 
-		console.log("x = " + x + " xPos= " + xPos + " y =" +y + " yPos =" + yPos);
+		//console.log("x = " + x + " xPos= " + xPos + " y =" +y + " yPos =" + yPos);
 
 		if(Math.abs(x -xPos) <= 11 && Math.abs(y-yPos) <=50){
 			
@@ -184,6 +188,13 @@ function draw(){
 			}
 			count++;
 		//	alert("hit");
+
+		if(yPos==27){
+			console.log("upCollide " + upCollide + " downCollide " + downCollide + "count " +count);
+		}
+
+		//console.log(yPos);
+			//console.log("upCollide " + upCollide + " downCollide " + downCollide + "count " +count);
 		}
 
 		if(xPos==10){
@@ -217,6 +228,7 @@ function draw(){
 		}
 		if(bounceFromTop ==true){
 			yPos++;
+
 		}
 
 		if(bounceFromBottom == true){
@@ -233,6 +245,10 @@ function draw(){
 
 
 	}
+
+	//console.log("xPos " + " " + xPos + " yPos " + yPos );
+
+
 	
 }
 
