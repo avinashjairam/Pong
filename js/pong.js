@@ -30,6 +30,8 @@ var downCollide=false;
 var bounceFromTop = false;
 var bounceFromBottom = false;
 
+var ballSpeed=1;
+
 var start=true;
 var lose = false;
 
@@ -140,8 +142,8 @@ function draw(){
 
 		//Moving the ball left 
 		if(xPos  >= 10 && left==true){
-			xPos--;
-
+			xPos-=ballSpeed;
+			//xPos--;
 
 
 			//When the ball reaches x Position 10, increment a counter.
@@ -154,6 +156,7 @@ function draw(){
 
 		//Moving the Ball Right 
 		if(xPos<=canvas.width-10 && right==true){
+			//xPos+=ballSpeed;
 			xPos++;
 			//alert("error");
 			if(xPos == canvas.width-10){
@@ -161,12 +164,15 @@ function draw(){
 			}
 		}
 
+		//Moving the paddle up
 
 
 		if(upPressed==true && y >= 0){
 			y-=5;
 			//alert("Hi");
 		}
+
+		//Moving the paddle down
 
 		if(downPressed==true && y <= canvas.height- 40){
 			y+=5;
@@ -189,9 +195,11 @@ function draw(){
 			count++;
 		//	alert("hit");
 
-		if(yPos==27){
-			console.log("upCollide " + upCollide + " downCollide " + downCollide + "count " +count);
-		}
+			ballSpeed++;
+
+			if(yPos==27){
+				console.log("upCollide " + upCollide + " downCollide " + downCollide + "count " +count);
+			}
 
 		//console.log(yPos);
 			//console.log("upCollide " + upCollide + " downCollide " + downCollide + "count " +count);
