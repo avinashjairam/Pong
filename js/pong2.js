@@ -28,24 +28,28 @@ var downPressed = false;
 // var upCollide=false;
 // var downCollide=false;
 
+//Flags which indicate the direction of the bounce of the ball
+//If bounceFromTop is true then the ball will 'bounce off the top of the canvas' and vice versa
 var bounceFromTop = true;
 var bounceFromBottom = false;
 
-// var ballSpeed=2;
+var ballSpeed = 2;
 
 var start = true;
 var lose = false;
+
+var score = 0; 
 
 //Event Handlers
 //When the up key is pressed, the upPressed flag is to set to true 
 //Similarly, when the down key is pressed, the downPressed flag is to true
 $(document).keydown(function(event){
 	
-	if(event.keyCode==38){
+	if(event.keyCode == 38){
 		upPressed = true;
 	}
 
-	if(event.keyCode==40 ){
+	if(event.keyCode == 40 ){
 		downPressed = true;
 	}
 });
@@ -59,8 +63,8 @@ $(document).keyup(function(event){
 		upPressed = false;
 	}
 
-	if(event.keyCode==40){
-		downPressed=false;
+	if(event.keyCode == 40){
+		downPressed = false;
 	}
 });
 
@@ -84,6 +88,7 @@ $("#canvas").bind("click", function(event){
 
 //Lost function clears the canvas and displays a message when the player loses
 function lost(){
+	lose = true;
 	ctx.clearRect(0,0,canvas.width,canvas.height);
 	ctx.font = "30px Arial";
     ctx.fillText("Game Over!",150,canvas.height/2);
@@ -145,26 +150,50 @@ function bounce(){
 function moveBall(){
 	if(start){
 		if(ballX > 10 && left){
-			ballX -= 1;
+			ballX -= ballSpeed;
 			
 		}
 
-		if(ballY == canvas.height - 10){
+		if(ballY >= canvas.height - 10){
 			bounceFromBottom = true;
 			bounceFromTop = false;
 		}
 
-		if(ballY == 10){
+		if(ballY <= 10){
 			bounceFromTop = true;
 			bounceFromBottom = false;
 		}
 
 		if(bounceFromBottom){
-			ballY -= 1;
+			ballY -= ballSpeed;
 		}
 
 		if(bounceFromTop){
-			ballY += 1;
+			ballY += ballSpeed;
+		}
+
+		if(ballX <= 10){
+			lost();
+		}
+
+		//If the ball collides with the paddle, set left to false and set right to true 
+		//increase the ball speed by 1
+		if(Math.abs(paddleX - ballX) <= 11 && Math.abs(paddleY - ballY) <= 30 ){
+			left = false;
+			right = true;
+			ballSpeed += 1;
+			//alert("collision");
+		}
+
+		if(right){
+			//alert('move right');
+			ballX += ballSpeed;
+		}
+
+		if(right && ballX >= canvas.width-10){
+			//alert("right wall collision");
+			right = false;
+			left = true;
 		}
 
 	}
@@ -174,167 +203,28 @@ function draw(){
 	
 	if(lose === false){
 
-	//	console.log("ballX " + ballX + "left " +left + "count " + count);
-
 		ctx.clearRect(0,0,canvas.width,canvas.height);
 
 		drawPaddle();
 		drawBall();
 		movePaddle();
 		moveBall();
-
-		
-
-
-		// if(start==true){
-		// 	ballY++;
-		// }
-
-		// if(count%2==0){
-		// 	left =true;
-		// 	right=false;
-		// }
-		// else{
-		// 	left =false;
-		// 	right=true;
-		// }
-
-	//	console.log(ballSpeed);
-
-		//Moving the ball left 
-		// if(ballX  >= 10 && left==true){
-		// 	ballX-=ballSpeed;
-		// 	//ballX-=3;
-
-		// 	console.log("ballX " + ballX + "left is " + left + " right is " + right + " count is " + count );
-
-		// 	//When the ball reaches x Position 10, increment a counter.
-		// 	// When the counter is odd the ball moves right.
-
-		// 	if(ballX==10){
-		// 		left = false;
-		// 		right = true;
-		// 		count++;
-		// 	}
-		// }
-
-		//Moving the Ball Right 
-		// if(ballX<=canvas.width-10 && right==true){
-		// 	ballX+=ballSpeed;
-		// 	//ballX+=3;
-		// 	//alert("error");
-		// 	var z = canvas.width -10;
-		// 	console.log("ballX " + ballX + "left is " + left + " right is " + right + " count is " + count + "canvas width " + z);
-
-		// 	if(ballX == canvas.width-50){
-		// 		console.log("right wall hit");
-		// 		count++;
-		// 		right = false;
-		// 		left = true;
-		// 	}
-		// }
-
-
-
-		
-		//console.log("x = " + x + " ballX= " + ballX + " y =" +y + " ballY =" + ballY);
-
-		// if(Math.abs(paddleX -ballX) <= 11 && Math.abs(paddleY-ballY) <=50){
-			
-		// 	if(upPressed == true){
-		// 		upPressed = false;
-		// 		upCollide=true;
-		// 		alert("paddle hit");
-		// 		//ballY-=10;
-
-		// 	}
-
-		// 	ballSpeed++;
-
-
-		// 	if(downPressed == true){
-		// 		downPressed = false;
-		// 		downCollide=true;
-		// 		//ballY+=10;
-		// 	}
-		// 	count++;
-		// //	alert("hit");
-
-			
-		
-
-		// 	// if(ballY==27){
-		// 	// 	console.log("upCollide " + upCollide + " downCollide " + downCollide + "count " +count);
-		// 	// }
-
-		// //console.log(ballY);
-		// 	//console.log("upCollide " + upCollide + " downCollide " + downCollide + "count " +count);
-		// }
-
-		// if(ballX==10){
-		// 	//alert("miss");
-		// 	lose=true;
-
-		// }
-
-
-		// if(upCollide==true){
-		// 	ballY--;
-		// }
-		// if(downCollide==true){
-		// 	ballY++;
-		// }
-
-		// if(ballY == 10){
-		// //	alert("bounce top");
-		// 	bounceFromTop=true;
-		// 	bounceFromBottom=false;
-			
-		// 	upCollide=false;
-		// }
-
-		// if(ballY == canvas.height-10){
-		// 	//alert("bounce bottom");
-		// 	bounceFromBottom=true;
-		// 	bounceFromTop=false;
-
-		// 	downCollide=false;
-		// }
-		// if(bounceFromTop ==true){
-		// 	ballY++;
-
-		// }
-
-		// if(bounceFromBottom == true){
-		// 	ballY--;
-		// 	start=false;
-		// }
-
 	}
 	else{
 	//	console.log(ballX);
 		lost();
-		playAgain();
-
-	
-
+		//newGame();
 
 	}
 
-	//console.log("ballX " + " " + ballX + " ballY " + ballY );
-
-
-	
 }
 
-function playAgain(){
+function newGame(){
+	alert("button clicked");
 
-		if(lose==true && xClick !=1){
+	if(lose && xClick !=1){
 		lose = false;
-		//alert(xClick);
 	}
-
-
 }
 
 

@@ -15,11 +15,21 @@
 
 
 <body onload="draw()">
-<h1>Play Pong!!</h1>
 
-<canvas id="canvas" width="500" height="300">Your browser does not support the canvas tag.</canvas>
+<div id = "playingArea">
+	<h1>Play Pong!!</h1>
+
+	<canvas id="canvas" width="600" height="400">Your browser does not support the canvas tag.</canvas>
 
 
+	
+
+</div>
+<br>
+
+<div id ="newGameButton">
+	<button onclick="newGame()"> New Game </button>
+</div>
 
 <script type="text/javascript" src="./js/pong2.js">
 </script>

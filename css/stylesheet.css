@@ -1,4 +1,11 @@
-#canvas{
-	border:1px solid black;
+#playingArea{
+	text-align:center;
+}
 
+#canvas{
+	border:1px solid black;	
+}
+
+#newGameButton{
+	text-align: center;
 }
