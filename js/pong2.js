@@ -91,9 +91,7 @@ function lost(){
 	lose = true;
 	ctx.clearRect(0,0,canvas.width,canvas.height);
 	ctx.font = "30px Arial";
-    ctx.fillText("Game Over!",150,canvas.height/2);
-    ctx.fillText("Play Again?",150,(canvas.height/2)+50)
-    //ctx.rect(150,(canvas.height/2)+10, 50,20);
+    ctx.fillText("Game Over!",canvas.width/2 - 100,canvas.height/2);
     ctx.fillStyle="red"
     ctx.fill();
     ctx.closePath();
@@ -220,11 +218,38 @@ function draw(){
 }
 
 function newGame(){
-	alert("button clicked");
+	//alert("button clicked");
 
-	if(lose && xClick !=1){
+	// if(lose && xClick !=1){
+		paddleX = 10;
+		paddleY = 50;
+
+		//ballX and ballY is the initial starting position of the ball
+		ballX = canvas.width-10;
+		ballY = canvas.height/2; 
+
+		//these are the flags which determine what direction the ball is going in
+		//By default, left is true
+		left = true;
+		right = false;
+
+		upPressed = false;
+		downPressed = false;
+
+		//Flags which indicate the direction of the bounce of the ball
+		//If bounceFromTop is true then the ball will 'bounce off the top of the canvas' and vice versa
+		bounceFromTop = true;
+ 		bounceFromBottom = false;
+
+		ballSpeed = 2;
+
+		start = true;
 		lose = false;
-	}
+
+		score = 0; 
+
+	//	lose = false;
+	// }
 }
 
 
