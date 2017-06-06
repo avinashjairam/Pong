@@ -185,13 +185,29 @@ function moveBall(){
 		//If the ball collides with the paddle, set left to false and set right to true 
 		//increase the ball speed by 1
 		if(Math.abs(paddleX - ballX) <= 10 && Math.abs(paddleY - ballY) <= 70 ){
-			left = false;
-			right = true;
-			ballSpeed += 0.5;
-
-			score++;
-
-			//alert("collision");
+			if(upPressed){
+				left = false;
+				right = true;
+				ballSpeed += 0.5;
+				bounceFromBottom = true;
+				bounceFromTop = false;
+				score++;
+			}
+			else if(downPressed){
+				left = false;
+				right = true;
+				ballSpeed += 0.5;
+				bounceFromBottom = false;
+				bounceFromTop = true;
+				score++;
+			}
+			else{
+				left = false;
+				right = true;
+				ballSpeed += 0.5;
+				score++;
+			}
+					
 		}
 
 		if(right){
