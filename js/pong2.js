@@ -92,6 +92,7 @@ function lost(){
 	ctx.clearRect(0,0,canvas.width,canvas.height);
 	ctx.font = "30px Arial";
     ctx.fillText("Game Over!",canvas.width/2 - 100,canvas.height/2);
+    ctx.fillText("Score: " + score,canvas.width/2 - 100,canvas.height/2 + 40);
     ctx.fillStyle="red"
     ctx.fill();
     ctx.closePath();
@@ -114,7 +115,7 @@ function drawBall(){
 
 function drawPaddle(){
 	ctx.beginPath();
-	ctx.rect(paddleX, paddleY,10,40);
+	ctx.rect(paddleX, paddleY,10,90);
 	ctx.fillStyle="blue";
 	ctx.fill();
 	ctx.closePath();
@@ -147,16 +148,22 @@ function bounce(){
 
 function moveBall(){
 	if(start){
+
+		//Moving the ball left if its x coordinate is > 10 and left flag set to true
 		if(ballX > 10 && left){
 			ballX -= ballSpeed;
 			
 		}
 
+		//If the ball hits the bottom of the canvas, set the bounceFromBottom to true and
+		// bounceFromTop to false. This allows the ball to bounce from bottom to top
 		if(ballY >= canvas.height - 10){
 			bounceFromBottom = true;
 			bounceFromTop = false;
 		}
 
+		//If the ball hits the top of the canvas, set the bounceFromTop to true and 
+		//bounceFromBottom to tfalse. This allows the ball to bounce from top to bottom
 		if(ballY <= 10){
 			bounceFromTop = true;
 			bounceFromBottom = false;
@@ -171,15 +178,19 @@ function moveBall(){
 		}
 
 		if(ballX <= 10){
+			alert("paddleX " + paddleX + " ballX " + ballX + " paddleY " + paddleY + " ballY " + ballY);
 			lost();
 		}
 
 		//If the ball collides with the paddle, set left to false and set right to true 
 		//increase the ball speed by 1
-		if(Math.abs(paddleX - ballX) <= 11 && Math.abs(paddleY - ballY) <= 30 ){
+		if(Math.abs(paddleX - ballX) <= 10 && Math.abs(paddleY - ballY) <= 70 ){
 			left = false;
 			right = true;
-			ballSpeed += 1;
+			ballSpeed += 0.5;
+
+			score++;
+
 			//alert("collision");
 		}
 
@@ -197,30 +208,36 @@ function moveBall(){
 	}
 }
 
+//Main function where everything happens
+
 function draw(){
 	
 	if(lose === false){
-
 		ctx.clearRect(0,0,canvas.width,canvas.height);
-
 		drawPaddle();
 		drawBall();
 		movePaddle();
 		moveBall();
+		updateScore();
 	}
 	else{
-	//	console.log(ballX);
 		lost();
-		//newGame();
-
 	}
 
 }
 
-function newGame(){
-	//alert("button clicked");
+//This function prints the score on the canvas
+function updateScore(){
+	ctx.font = "20px Arial";
+    ctx.fillText("Score: " + score, canvas.width - 150 , 20);
+    ctx.fillStyle="red"
+    ctx.fill();
+    ctx.closePath();
+}
 
-	// if(lose && xClick !=1){
+
+//Game Loop Function. Resets all the variables and starts the game over
+function newGame(){
 		paddleX = 10;
 		paddleY = 50;
 
@@ -242,19 +259,10 @@ function newGame(){
  		bounceFromBottom = false;
 
 		ballSpeed = 2;
-
 		start = true;
 		lose = false;
-
 		score = 0; 
-
-	//	lose = false;
-	// }
 }
 
-
-
-
-
-
+//The setInterval method calls the draw function every 10 milliseconds 
 setInterval(draw,10);
